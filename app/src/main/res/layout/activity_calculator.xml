@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.calculator.CalculatorActivity">
+
+    <ImageView
+        android:id="@+id/btn_history"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_history"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/history_icon" />
+
+    <HorizontalScrollView
+        android:id="@+id/sv_calculation"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="24dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_history">
+
+        <TextView
+            android:id="@+id/tv_calculation"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:fontFamily="@font/poppins_regular"
+            android:padding="8dp"
+            android:gravity="bottom"
+            android:scrollHorizontally="true"/>
+
+    </HorizontalScrollView>
+
+    <HorizontalScrollView
+        android:id="@+id/sv_result"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sv_calculation">
+
+        <TextView
+            android:id="@+id/tv_result"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:fontFamily="@font/poppins_regular"
+            android:padding="8dp"
+            android:scrollHorizontally="true"/>
+
+    </HorizontalScrollView>
+
+    <TableLayout
+        android:id="@+id/table"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="fill"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sv_result">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btn_clear"
+                style="@style/Button.Clear"
+                android:onClick="onCLear"
+                android:text="@string/c" />
+
+            <Button
+                android:id="@+id/btn_back_space"
+                style="@style/Button.Operator"
+                android:onClick="onCLear"
+                android:text="@string/backspace" />
+
+            <Button
+                android:id="@+id/btn_open_bracket"
+                style="@style/Button.Operator"
+                android:onClick="onMathOp"
+                android:text="@string/opbrac" />
+
+            <Button
+                android:id="@+id/btn_close_bracket"
+                style="@style/Button.Operator"
+                android:onClick="onMathOp"
+                android:text="@string/clbrac" />
+
+            <Button
+                android:id="@+id/btn_2nd"
+                style="@style/Button.Operator"
+                android:onClick="onSecond"
+                android:text="@string/_2nd" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btn_euler"
+                style="@style/Button.Operator"
+                android:onClick="onMathOp"
+                android:text="@string/e" />
+
+            <Button
+                android:id="@+id/btn_sinh"
+                style="@style/Button.Operator"
+                android:onClick="onMathOp"
+                android:text="@string/sinh" />
+
+            <Button
+                android:id="@+id/btn_cosh"
+                style="@style/Button.Operator"
+                android:onClick="onMathOp"
+                android:text="@string/cosh" />
+
+            <Button
+                android:id="@+id/btn_tanh"
+                style="@style/Button.Operator"
+                android:onClick="onMathOp"
+                android:text="@string/tanh" />
+
+            <Button
+                android:id="@+id/btn_sin"
+                style="@style/Button.Operator"
+                android:onClick="onMathOp"
+                android:text="@string/sin" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btn_sqr_root"
+                style="@style/Button.Operator"
+                android:onClick="onMathOp"
+                android:text="@string/sqrt" />
+
+            <Button
+                android:id="@+id/btn_modulo"
+                style="@style/Button.Operator"
+                android:onClick="onMathOp"
+                android:text="@string/modulo" />
+
+            <Button
+                android:id="@+id/btn_quadratic"
+                style="@style/Button.Operator"
+                android:onClick="onMathOp"
+                android:text="@string/exp" />
+
+            <Button
+                android:id="@+id/btn_divided"
+                style="@style/Button.Operator"
+                android:onClick="onMathOp"
+                android:text="@string/divide" />
+
+            <Button
+                android:id="@+id/btn_cos"
+                style="@style/Button.Operator"
+                android:onClick="onMathOp"
+                android:text="@string/cos" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btn_7"
+                style="@style/Button.Numeric"
+                android:onClick="onMathOp"
+                android:text="@string/_7" />
+
+            <Button
+                android:id="@+id/btn_8"
+                style="@style/Button.Numeric"
+                android:onClick="onMathOp"
+                android:text="@string/_8" />
+
+            <Button
+                android:id="@+id/btn_9"
+                style="@style/Button.Numeric"
+                android:onClick="onMathOp"
+                android:text="@string/_9" />
+
+            <Button
+                android:id="@+id/btn_multiply"
+                style="@style/Button.Operator"
+                android:onClick="onMathOp"
+                android:text="@string/multiply" />
+
+            <Button
+                android:id="@+id/btn_tan"
+                style="@style/Button.Operator"
+                android:onClick="onMathOp"
+                android:text="@string/tan" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btn_4"
+                style="@style/Button.Numeric"
+                android:onClick="onMathOp"
+                android:text="@string/_4" />
+
+            <Button
+                android:id="@+id/btn_5"
+                style="@style/Button.Numeric"
+                android:onClick="onMathOp"
+                android:text="@string/_5" />
+
+            <Button
+                android:id="@+id/btn_6"
+                style="@style/Button.Numeric"
+                android:onClick="onMathOp"
+                android:text="@string/_6" />
+
+            <Button
+                android:id="@+id/btn_plus"
+                style="@style/Button.Operator"
+                android:onClick="onMathOp"
+                android:text="@string/plus" />
+
+            <Button
+                android:id="@+id/btn_log10"
+                style="@style/Button.Operator"
+                android:onClick="onMathOp"
+                android:text="@string/log10" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btn_1"
+                style="@style/Button.Numeric"
+                android:onClick="onMathOp"
+                android:text="@string/_1" />
+
+            <Button
+                android:id="@+id/btn_2"
+                style="@style/Button.Numeric"
+                android:onClick="onMathOp"
+                android:text="@string/_2" />
+
+            <Button
+                android:id="@+id/btn_3"
+                style="@style/Button.Numeric"
+                android:onClick="onMathOp"
+                android:text="@string/_3" />
+
+            <Button
+                android:id="@+id/btn_minus"
+                style="@style/Button.Operator"
+                android:onClick="onMathOp"
+                android:text="@string/minus" />
+
+            <Button
+                android:id="@+id/btn_log"
+                style="@style/Button.Operator"
+                android:onClick="onMathOp"
+                android:text="@string/log" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btn_point"
+                style="@style/Button.Numeric"
+                android:onClick="onDot"
+                android:text="@string/comma" />
+
+            <Button
+                android:id="@+id/btn_0"
+                style="@style/Button.Numeric"
+                android:onClick="onMathOp"
+                android:text="@string/_0" />
+
+            <Button
+                android:id="@+id/btn_equal"
+                style="@style/Button.Equal"
+                android:onClick="onEqual"
+                android:text="@string/equal" />
+
+            <Button
+                android:id="@+id/btn_phi"
+                style="@style/Button.Operator"
+                android:onClick="onMathOp"
+                android:text="@string/phi" />
+
+        </TableRow>
+
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
