@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface HistoryDAO {
 
-    @Query("SELECT * FROM history_table ORDER BY created_at ASC")
+    @Query("SELECT * FROM history_table ORDER BY created_at DESC")
     fun getHistory(): Flow<List<HistoryEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -46,7 +46,7 @@ class MathematicalOperations(private val view: View, private val tvCalculation: 
                 for (i in listOperator.indices) {
                     val list = operation.split(".")
 
-                    if (list.last().contains(listOperator[i])) onCalculation(".")
+                    if (list.last().contains(listOperator[i]) || list.size == 1) onCalculation(".")
                 }
             }
             operation.isNotEmpty() -> onCalculation(".")
