@@ -3,34 +3,54 @@ package com.istekno.mycalculator.ui.calculator
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import com.istekno.mycalculator.R
 
 class MathematicalOperations(private val view: View, private val tvCalculation: TextView, private val tvResult: TextView) {
 
     private val listNumber = arrayOf("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
-    private val listOperator = arrayOf(".", "(", ")", "/", "*", "-", "+", "%", "^")
+    private val listOperator = mutableListOf(".", "(", ")", "/", "*", "-", "+", "%", "^")
     private val scientificOp = arrayOf("sin","cos","tan","asin","acos","atan","sinh","cosh","tanh","log","log10")
-    private var str = view.findViewById<Button>(view.id).text.toString()
+    private var str = (view as Button).text.toString()
 
     fun actionGeneral() {
         for (i in scientificOp.indices) {
             if (scientificOp.contains(str)) str += "("
         }
 
-        when {
-            str == "√" -> str = "sqrt("
-            str == "x^" -> str = "^"
-            tvResult.text.isEmpty() -> appendCalc(str, false)
-            tvResult.text.isNotEmpty() -> appendCalc( str, true)
+        if (str == "√") {
+            str = "sqrt("
+        } else if (str == "x^") {
+            str = "^"
+        }
+
+        if (tvResult.text.isEmpty()) {
+            appendCalc(str, false)
+        } else {
+            appendCalc( str, true)
         }
     }
 
     fun actionDot() {
-        if (tvCalculation.text.isEmpty() || listOperator.contains(str)) {
-            onCalculation("0.")
-        } else {
-            onCalculation(".")
+        val operation = tvCalculation.text
+        listOperator.remove(".")
+
+        for (i in listOperator.indices) {
+            if (operation.endsWith(listOperator[i])) onCalculation("0.")
+        }
+
+        when {
+            operation.endsWith('.') -> onCalculation("")
+            operation.length > 1 -> {
+                for (i in listOperator.indices) {
+                    val list = operation.split(".")
+
+                    if (list.last().contains(listOperator[i])) onCalculation(".")
+                }
+            }
+            operation.isNotEmpty() -> onCalculation(".")
+            operation.isEmpty() -> onCalculation("0.")
         }
     }
 

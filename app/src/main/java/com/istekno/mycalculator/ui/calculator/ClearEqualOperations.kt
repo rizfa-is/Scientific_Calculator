@@ -34,7 +34,7 @@ class ClearEqualOperations(private val context: Context, private val tvCalculati
             tvResult.text = ""
         } else if (expression.isNotEmpty()) {
             when {
-                expression[expression.length - 1] == '.' && expression[expression.length - 2] == '0' -> tvCalculation.text = expression.removeSuffix("0.")
+                expression.endsWith("0.") -> tvCalculation.text = expression.removeSuffix("0.")
                 expression.endsWith("sqrt(") -> tvCalculation.text = expression.removeSuffix("sqrt(")
                 expression.endsWith("sin(") -> tvCalculation.text = expression.removeSuffix("sin(")
                 expression.endsWith("cos(") -> tvCalculation.text = expression.removeSuffix("cos(")
